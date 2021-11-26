@@ -19,3 +19,6 @@ class TestRoom(unittest.TestCase):
 
     def test_room_has_guests(self):
         self.assertEqual(0, len(self.room.guests))
+
+    def test_room_can_count_guests(self):
+        self.assertEqual(0, self.room.count_guests())
