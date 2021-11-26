@@ -15,3 +15,6 @@ class Room:
             self.guests.remove(guest)
         else:
             return "Guest not found" 
+
+    def count_songs(self):
+        return len(self.playlist)
