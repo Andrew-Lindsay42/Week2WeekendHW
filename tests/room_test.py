@@ -43,3 +43,6 @@ class TestRoom(unittest.TestCase):
         self.room.add_guest(andrew)
 
         self.assertEqual("Guest not found", self.room.remove_guest(fred))
+
+    def test_room_can_count_songs(self):
+        self.assertEqual(2, self.room.count_songs())
