@@ -27,3 +27,12 @@ class TestRoom(unittest.TestCase):
         andrew = Guest("Andrew")
         self.room.add_guest(andrew)
         self.assertEqual(1, self.room.count_guests())
+
+    def test_room_can_remove_guests(self):
+        andrew = Guest("Andrew")
+        emily = Guest("Emily")
+        self.room.add_guest(andrew)
+        self.room.add_guest(emily)
+
+        self.room.remove_guest(andrew)
+        self.assertEqual(1, self.room.count_guests())
