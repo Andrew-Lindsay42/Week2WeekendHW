@@ -1,6 +1,7 @@
 import unittest
 from src.guest import Guest
 from src.song import Song
+from src.room import Room
 
 class TestRoom(unittest.TestCase):
 
@@ -8,7 +9,7 @@ class TestRoom(unittest.TestCase):
         self.waterloo = Song("Waterloo", "ABBA", "Europop")
         self.september = Song("September", "Earth, Wind & Fire", "R&B")
         self.seventies_playlist = [self.waterloo, self.september]
-        self.room = Room("70's classics", self.seventies_playlist, [])
+        self.room = Room("70's classics", self.seventies_playlist)
 
     def test_room_has_name(self):
         self.assertEqual("70's classics", self.room.name)
