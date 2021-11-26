@@ -9,6 +9,7 @@ class Room:
 
     def add_guest(self, guest):
         self.guests.append(guest)
+        guest.pay_entry()
 
     def remove_guest(self, guest):
         if guest in self.guests:

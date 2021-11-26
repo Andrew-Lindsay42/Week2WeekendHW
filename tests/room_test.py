@@ -27,6 +27,7 @@ class TestRoom(unittest.TestCase):
         andrew = Guest("Andrew", 20.00)
         self.room.add_guest(andrew)
         self.assertEqual(1, self.room.count_guests())
+        self.assertEqual(15, andrew.wallet)
 
     def test_room_can_remove_guest_in_room(self):
         andrew = Guest("Andrew", 20.00)
