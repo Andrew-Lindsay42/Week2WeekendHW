@@ -24,13 +24,13 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(0, self.room.count_guests())
 
     def test_room_can_add_guest(self):
-        andrew = Guest("Andrew")
+        andrew = Guest("Andrew", 20.00)
         self.room.add_guest(andrew)
         self.assertEqual(1, self.room.count_guests())
 
     def test_room_can_remove_guest_in_room(self):
-        andrew = Guest("Andrew")
-        emily = Guest("Emily")
+        andrew = Guest("Andrew", 20.00)
+        emily = Guest("Emily", 10.00)
         self.room.add_guest(andrew)
         self.room.add_guest(emily)
 
@@ -38,8 +38,8 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(1, self.room.count_guests())
 
     def test_room_can_remove_guest_not_in_room(self):
-        andrew = Guest("Andrew")
-        fred = Guest("Fred")
+        andrew = Guest("Andrew", 20.00)
+        fred = Guest("Fred", 10.00)
         self.room.add_guest(andrew)
 
         self.assertEqual("Guest not found", self.room.remove_guest(fred))
