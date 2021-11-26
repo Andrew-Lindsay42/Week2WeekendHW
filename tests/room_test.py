@@ -9,7 +9,7 @@ class TestRoom(unittest.TestCase):
         self.waterloo = Song("Waterloo", "ABBA", "Europop")
         self.september = Song("September", "Earth, Wind & Fire", "R&B")
         self.seventies_playlist = [self.waterloo, self.september]
-        self.room = Room("70's classics", self.seventies_playlist)
+        self.room = Room("70's classics", self.seventies_playlist, 5)
 
     def test_room_has_name(self):
         self.assertEqual("70's classics", self.room.name)
@@ -20,6 +20,9 @@ class TestRoom(unittest.TestCase):
     def test_room_has_guests(self):
         self.assertEqual(0, len(self.room.guests))
 
+    def test_room_has_capacity(self):
+        self.assertEqual(5, self.room.capacity)
+
     def test_room_can_count_guests(self):
         self.assertEqual(0, self.room.count_guests())
 
@@ -28,6 +31,13 @@ class TestRoom(unittest.TestCase):
         self.room.add_guest(andrew)
         self.assertEqual(1, self.room.count_guests())
         self.assertEqual(15, andrew.wallet)
+
+    def test_room_has_remaining_capacity(self):
+        andrew = Guest("Andrew", 20.00)
+        emily = Guest("Emily", 10.00)
+        self.room.add_guest(andrew)
+        self.room.add_guest(emily)
+        self.assertEqual(3, self.room.remaining_capacity())
 
     def test_room_can_remove_guest_in_room(self):
         andrew = Guest("Andrew", 20.00)
