@@ -2,8 +2,8 @@ class Room:
     def __init__(self, name, playlist, capacity):
         self.name = name
         self.playlist = playlist
-        self.guests = []
         self.capacity = capacity
+        self.guests = []
 
     def count_guests(self):
         return len(self.guests)
@@ -12,8 +12,11 @@ class Room:
         return (self.capacity - self.count_guests())
 
     def add_guest(self, guest):
-        self.guests.append(guest)
-        guest.pay_entry()
+        if self.remaining_capacity() > 0:
+            self.guests.append(guest)
+            guest.pay_entry()
+        else:
+            return "Sorry, room's all full!"
 
     def remove_guest(self, guest):
         if guest in self.guests:

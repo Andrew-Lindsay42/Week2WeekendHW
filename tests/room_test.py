@@ -26,11 +26,18 @@ class TestRoom(unittest.TestCase):
     def test_room_can_count_guests(self):
         self.assertEqual(0, self.room.count_guests())
 
-    def test_room_can_add_guest(self):
+    def test_room_can_add_guest_space(self):
         andrew = Guest("Andrew", 20.00)
         self.room.add_guest(andrew)
         self.assertEqual(1, self.room.count_guests())
         self.assertEqual(15, andrew.wallet)
+
+    def test_room_can_add_guest_no_space(self):
+        tiny_room = Room("Cupboard", [], 0)
+        andrew = Guest("Andrew", 20.00)
+        self.assertEqual("Sorry, room's all full!", tiny_room.add_guest(andrew))
+        self.assertEqual(0, tiny_room.count_guests())
+        self.assertEqual(20, andrew.wallet)
 
     def test_room_has_remaining_capacity(self):
         andrew = Guest("Andrew", 20.00)
