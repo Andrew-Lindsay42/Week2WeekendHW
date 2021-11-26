@@ -11,4 +11,7 @@ class Room:
         self.guests.append(guest)
 
     def remove_guest(self, guest):
-        self.guests.remove(guest)
+        if guest in self.guests:
+            self.guests.remove(guest)
+        else:
+            return "Guest not found" 
