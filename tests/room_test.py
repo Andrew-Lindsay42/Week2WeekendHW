@@ -46,3 +46,8 @@ class TestRoom(unittest.TestCase):
 
     def test_room_can_count_songs(self):
         self.assertEqual(2, self.room.count_songs())
+
+    def test_room_can_add_song(self):
+        one_that_I_want = Song("You're the one that I want", "Grease", "Pop")
+        self.room.add_song(one_that_I_want)
+        self.assertEqual(3, self.room.count_songs())
