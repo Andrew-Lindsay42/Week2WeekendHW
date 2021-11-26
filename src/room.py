@@ -6,3 +6,6 @@ class Room:
 
     def count_guests(self):
         return len(self.guests)
+
+    def add_guest(self, guest):
+        self.guests.append(guest)
