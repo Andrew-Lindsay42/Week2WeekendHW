@@ -27,28 +27,31 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(0, self.room.count_guests())
 
     def test_room_can_add_guest_space(self):
-        andrew = Guest("Andrew", 20.00)
+        andrew = Guest("Andrew", 20.00, self.waterloo)
         self.room.add_guest(andrew)
+
         self.assertEqual(1, self.room.count_guests())
         self.assertEqual(15, andrew.wallet)
 
     def test_room_can_add_guest_no_space(self):
         tiny_room = Room("Cupboard", [], 0)
-        andrew = Guest("Andrew", 20.00)
+        andrew = Guest("Andrew", 20.00, self.waterloo)
+
         self.assertEqual("Sorry, room's all full!", tiny_room.add_guest(andrew))
         self.assertEqual(0, tiny_room.count_guests())
         self.assertEqual(20, andrew.wallet)
 
     def test_room_has_remaining_capacity(self):
-        andrew = Guest("Andrew", 20.00)
-        emily = Guest("Emily", 10.00)
+        andrew = Guest("Andrew", 20.00, self.waterloo)
+        emily = Guest("Emily", 10.00, self.waterloo)
         self.room.add_guest(andrew)
         self.room.add_guest(emily)
+
         self.assertEqual(3, self.room.remaining_capacity())
 
     def test_room_can_remove_guest_in_room(self):
-        andrew = Guest("Andrew", 20.00)
-        emily = Guest("Emily", 10.00)
+        andrew = Guest("Andrew", 20.00, self.waterloo)
+        emily = Guest("Emily", 10.00, self.waterloo)
         self.room.add_guest(andrew)
         self.room.add_guest(emily)
 
@@ -56,8 +59,8 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(1, self.room.count_guests())
 
     def test_room_can_remove_guest_not_in_room(self):
-        andrew = Guest("Andrew", 20.00)
-        fred = Guest("Fred", 10.00)
+        andrew = Guest("Andrew", 20.00, self.waterloo)
+        fred = Guest("Fred", 10.00, self.waterloo)
         self.room.add_guest(andrew)
 
         self.assertEqual("Guest not found", self.room.remove_guest(fred))
@@ -67,6 +70,7 @@ class TestRoom(unittest.TestCase):
 
     def test_room_can_add_song(self):
         one_that_I_want = Song("You're the one that I want", "Grease", "Pop")
+
         self.room.add_song(one_that_I_want)
         self.assertEqual(3, self.room.count_songs())
 
