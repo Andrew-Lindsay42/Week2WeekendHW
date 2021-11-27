@@ -6,3 +6,7 @@ class Guest:
 
     def pay_entry(self):
         self.wallet -= 5
+
+    def check_favourite(self, room):
+        if self.favourite_song in room.playlist:
+            return "Whoooo!"

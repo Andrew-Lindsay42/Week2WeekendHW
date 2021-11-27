@@ -1,6 +1,7 @@
 import unittest
 from src.guest import Guest
 from src.song import Song
+from src.room import Room
 
 class TestGuest(unittest.TestCase):
 
@@ -20,3 +21,11 @@ class TestGuest(unittest.TestCase):
 
     def test_guest_has_favourite_song(self):
         self.assertEqual("Back in Black", self.andrew.favourite_song.name)
+
+    def test_guest_fav_on_playlist(self):
+        room = Room("Rock", [self.back_in_black], 5)
+        self.assertEqual("Whoooo!", self.andrew.check_favourite(room))
+
+    def test_guest_fav_not_on_playlist(self):
+        room = Room("Rock", [], 5)
+        self.assertEqual(None, self.andrew.check_favourite(room))
