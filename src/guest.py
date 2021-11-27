@@ -10,3 +10,6 @@ class Guest:
     def check_favourite(self, room):
         if self.favourite_song in room.playlist:
             return "Whoooo!"
+
+    def can_afford(self, amount):
+        return True if self.wallet > amount else False
