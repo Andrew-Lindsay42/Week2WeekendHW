@@ -9,7 +9,7 @@ class TestRoom(unittest.TestCase):
         self.waterloo = Song("Waterloo", "ABBA", "Europop")
         self.september = Song("September", "Earth, Wind & Fire", "R&B")
         self.seventies_playlist = [self.waterloo, self.september]
-        self.room = Room("70's classics", self.seventies_playlist, 5, 5)
+        self.room = Room("70's classics", self.seventies_playlist, 5, 5.0)
 
     def test_room_has_name(self):
         self.assertEqual("70's classics", self.room.name)
@@ -22,6 +22,12 @@ class TestRoom(unittest.TestCase):
 
     def test_room_has_capacity(self):
         self.assertEqual(5, self.room.capacity)
+
+    def test_room_has_fee(self):
+        self.assertEqual(5.0, self.room.fee)
+
+    def test_room_has_takings(self):
+        self.assertEqual(0, self.room.takings)
 
     def test_room_can_count_guests(self):
         self.assertEqual(0, self.room.count_guests())
@@ -85,3 +91,7 @@ class TestRoom(unittest.TestCase):
     def test_room_has_favourite_guest_cheers(self):
         andrew = Guest("Andrew", 20.00, self.waterloo)
         self.assertEqual("Whoooo!", self.room.add_guest(andrew))
+
+    def test_room_cannot_add_poor_guest(self):
+        pauper = Guest("Steve", 0, self.waterloo)
+        self.assertEqual("Sorry, you don't have enough money.", self.room.add_guest(pauper))
