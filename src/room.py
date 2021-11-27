@@ -15,6 +15,7 @@ class Room:
         if self.remaining_capacity() > 0:
             self.guests.append(guest)
             guest.pay_entry()
+            return guest.check_favourite(self)
         else:
             return "Sorry, room's all full!"
 

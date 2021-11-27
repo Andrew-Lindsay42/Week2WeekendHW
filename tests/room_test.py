@@ -81,3 +81,7 @@ class TestRoom(unittest.TestCase):
     def test_room_can_remove_song_not_in_playlist(self):
         one_that_I_want = Song("You're the one that I want", "Grease", "Pop")
         self.assertEqual("Song not in playlist", self.room.remove_song(one_that_I_want))
+
+    def test_room_has_favourite_guest_cheers(self):
+        andrew = Guest("Andrew", 20.00, self.waterloo)
+        self.assertEqual("Whoooo!", self.room.add_guest(andrew))
