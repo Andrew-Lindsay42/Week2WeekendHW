@@ -16,16 +16,22 @@ class TestGuest(unittest.TestCase):
         self.assertEqual(20.00, self.andrew.wallet)
 
     def test_guest_can_pay(self):
-        self.andrew.pay_entry()
+        self.andrew.pay_fee(5)
         self.assertEqual(15.00, self.andrew.wallet)
 
     def test_guest_has_favourite_song(self):
         self.assertEqual("Back in Black", self.andrew.favourite_song.name)
 
     def test_guest_fav_on_playlist(self):
-        room = Room("Rock", [self.back_in_black], 5)
+        room = Room("Rock", [self.back_in_black], 5, 5)
         self.assertEqual("Whoooo!", self.andrew.check_favourite(room))
 
     def test_guest_fav_not_on_playlist(self):
-        room = Room("Rock", [], 5)
+        room = Room("Rock", [], 5, 5)
         self.assertEqual(None, self.andrew.check_favourite(room))
+
+    def test_guest_can_afford(self):
+        self.assertEqual(True, self.andrew.can_afford(5))
+
+    def test_guest_cannot_afford(self):
+        self.assertEqual(False, self.andrew.can_afford(20.01))

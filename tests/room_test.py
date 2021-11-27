@@ -9,7 +9,7 @@ class TestRoom(unittest.TestCase):
         self.waterloo = Song("Waterloo", "ABBA", "Europop")
         self.september = Song("September", "Earth, Wind & Fire", "R&B")
         self.seventies_playlist = [self.waterloo, self.september]
-        self.room = Room("70's classics", self.seventies_playlist, 5)
+        self.room = Room("70's classics", self.seventies_playlist, 5, 5)
 
     def test_room_has_name(self):
         self.assertEqual("70's classics", self.room.name)
@@ -34,7 +34,7 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(15, andrew.wallet)
 
     def test_room_can_add_guest_no_space(self):
-        tiny_room = Room("Cupboard", [], 0)
+        tiny_room = Room("Cupboard", [], 0, 0)
         andrew = Guest("Andrew", 20.00, self.waterloo)
 
         self.assertEqual("Sorry, room's all full!", tiny_room.add_guest(andrew))

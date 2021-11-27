@@ -4,8 +4,8 @@ class Guest:
         self.wallet = wallet
         self.favourite_song = favourite_song
 
-    def pay_entry(self):
-        self.wallet -= 5
+    def pay_fee(self, amount):
+        self.wallet -= amount
 
     def check_favourite(self, room):
         if self.favourite_song in room.playlist:
