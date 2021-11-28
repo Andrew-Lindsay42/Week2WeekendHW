@@ -34,6 +34,13 @@ class Room:
         else:
             return "Guest not found" 
 
+    def add_multiple_guests(self, group):
+        if self.remaining_capacity() > len(group):
+            for guest in group:
+                self.add_guest(guest)
+        else:
+            return "Sorry guys, we can't fit you all in"
+
     def count_songs(self):
         return len(self.playlist)
 

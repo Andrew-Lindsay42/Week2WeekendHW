@@ -95,3 +95,21 @@ class TestRoom(unittest.TestCase):
     def test_room_cannot_add_poor_guest(self):
         pauper = Guest("Steve", 0, self.waterloo)
         self.assertEqual("Sorry, you don't have enough money.", self.room.add_guest(pauper))
+
+    def test_room_can_add_guests_space(self):
+        andrew = Guest("Andrew", 20.00, self.waterloo)
+        emily = Guest("Emily", 10.00, self.waterloo)
+        group = [andrew, emily]
+
+        self.room.add_multiple_guests(group)
+
+        self.assertEqual(2, self.room.count_guests())
+        self.assertEqual(3, self.room.remaining_capacity())
+
+    def test_room_can_add_guests_no_space(self):
+        andrew = Guest("Andrew", 20.00, self.waterloo)
+        emily = Guest("Emily", 10.00, self.waterloo)
+        group = [andrew, emily]
+        small_room = Room("Sound booth", [], 1, 0)
+
+        self.assertEqual("Sorry guys, we can't fit you all in", small_room.add_multiple_guests(group))
