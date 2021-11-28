@@ -16,6 +16,9 @@ class Room:
     def add_takings(self, amount):
         self.takings += amount
 
+    def check_takings(self):
+        return self.takings
+
     def add_guest(self, guest):
         if self.remaining_capacity() > 0:
             if guest.can_afford(self.fee):

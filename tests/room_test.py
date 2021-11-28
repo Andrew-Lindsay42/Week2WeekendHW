@@ -29,6 +29,15 @@ class TestRoom(unittest.TestCase):
     def test_room_has_takings(self):
         self.assertEqual(0, self.room.takings)
 
+    def test_room_can_check_takings(self):
+        room = Room("", [], 5, 5.0)
+        room.takings = 10.0
+        self.assertEqual(10.0, room.check_takings())
+
+    def test_room_can_add_takings(self):
+        self.room.add_takings(20)
+        self.assertEqual(20, self.room.check_takings())
+
     def test_room_can_count_guests(self):
         self.assertEqual(0, self.room.count_guests())
 
@@ -38,6 +47,7 @@ class TestRoom(unittest.TestCase):
 
         self.assertEqual(1, self.room.count_guests())
         self.assertEqual(15, andrew.wallet)
+        self.assertEqual(5, self.room.check_takings())
 
     def test_room_can_add_guest_no_space(self):
         tiny_room = Room("Cupboard", [], 0, 0)
@@ -46,6 +56,7 @@ class TestRoom(unittest.TestCase):
         self.assertEqual("Sorry, room's all full!", tiny_room.add_guest(andrew))
         self.assertEqual(0, tiny_room.count_guests())
         self.assertEqual(20, andrew.wallet)
+        self.assertEqual(0, tiny_room.check_takings())
 
     def test_room_has_remaining_capacity(self):
         andrew = Guest("Andrew", 20.00, self.waterloo)
